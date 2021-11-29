@@ -1,6 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { AzureBlobStorageService } from 'src/app/azure-blob-storage.service';
 
+
+interface Food {
+  value: string;
+  viewValue: string;
+}
+
+
+
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -10,12 +18,21 @@ export class HomePageComponent implements OnInit {
 
   // SAS (shared access signatures)
   sas = "";
-
+  pictures=true;
   picturesList: string[] = [];
   picturesDownloaded: string[] = []
 
+  selectedValue!: string;
+
   videosList: string[] = [];
   videoDownloaded: any;
+
+
+  foods: Food[] = [
+    {value: 'steak-0', viewValue: 'Steak'},
+    {value: 'pizza-1', viewValue: 'Pizza'},
+    {value: 'tacos-2', viewValue: 'Tacos'},
+  ];
 
   constructor(private blobService: AzureBlobStorageService) {
 

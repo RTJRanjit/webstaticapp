@@ -7,7 +7,7 @@ import { BlobServiceClient, ContainerClient } from '@azure/storage-blob';
 export class AzureBlobStorageService {
 
   accountName="startwebangular";
-  containerName="pictures"
+  containerName="datafiles"
 
   public uploadImage(sas: string, content: Blob, name: string, handler: () => void) {
     this.uploadBlob(content, name, this.containerClient(sas), handler)

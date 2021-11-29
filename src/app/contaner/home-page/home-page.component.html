@@ -1,26 +1,44 @@
 <div>
-       <img src="https://startwebangular.blob.core.windows.net/pictures/20210822_114738.jpg" height="300px">
-       <h2>Pictures with SAS</h2>
-<table>
-  <tr>
-    <td></td><td><input type="file" (change)="imageSelected($event)"></td>
-  </tr>
-  <tr>
-    <td>Insert SAS:</td><td><input type="text" (change)="setSas($event)" size="90"></td>
-  </tr>
-  <tr>
-    <td>Current SAS:</td><td>{{sas}}</td>
-  </tr>
-</table>
-<h4>List</h4>
-<table>
-  <tr *ngFor="let pic of picturesList">
-    <td>{{pic}}</td>
-    <td><button (click)="deleteImage(pic)">DELETE</button></td>
-    <td><button (click)="downloadImage(pic)" download="pic">DOWNLOAD</button></td>
-  </tr>
-</table>
-<h4>Downloaded</h4>
-<img *ngFor="let blob of picturesDownloaded" src="{{blob}}" height="100px">
+  <h2>Data Load</h2>
+  <table>
+    <tr>
+      <td>Insert SAS:</td>
+      <td><input type="text" (change)="setSas($event)" size="40" /></td>
+    </tr>
+    <tr>
+      <td>Current SAS:</td>
+      <td>{{ sas }}</td>
+    </tr>
 
+    <tr>
+      <td><input type="file" (change)="imageSelected($event)" /></td>
+      <td><button (click)="imageSelected($event)">Upload</button></td>
+    </tr>
+  </table>
+
+  <select *ngFor="let food of foods">
+    <option value="{{ food.value }}">{{ food.viewValue }}</option>
+  </select>
+
+  <h4>File List</h4>
+  <table>
+    <tr>
+      <td><button (click)="pictures = !pictures">Pictures</button></td>
+    </tr>
+    <tr *ngIf="pictures">
+      <li *ngFor="let pic of picturesList">
+        {{ pic }}
+      </li>
+      <!-- <td><button (click)="deleteImage(pic)">DELETE</button></td>
+      <td>
+        <button (click)="downloadImage(pic)" download="pic">DOWNLOAD</button>
+      </td> -->
+    </tr>
+  </table>
+  <!-- <h4>Downloaded</h4>
+  <img
+    *ngFor="let blob of picturesDownloaded"
+    src="{{ blob }}"
+    height="100px"
+  /> -->
 </div>
